@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - CCWC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="../index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="container">
+                <h1 class="display-4 fw-bold">Support Our Community</h1>
+                <p class="lead">Your donation helps us preserve Congolese culture and empower our community in Worcester</p>
+            </div>
+        </div>
+        
+        <!-- Impact Section -->
+        <div class="impact-section">
+            <div class="container">
+                <h2 class="text-center mb-5">Your Impact</h2>
+                <div class="row">
+                    <div class="col-md-3 col-6">
+                        <div class="impact-item">
+                            <div class="impact-number">500+</div>
+                            <div class="impact-text">Families Supported</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="impact-item">
+                            <div class="impact-number">50+</div>
+                            <div class="impact-text">Events Hosted</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="impact-item">
+                            <div class="impact-number">75+</div>
+                            <div class="impact-text">Youth Programs</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="impact-item">
+                            <div class="impact-number">100+</div>
+                            <div class="impact-text">Businesses Promoted</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Donation Options -->
+        <h2 class="section-title text-center center">Choose Your Donation Level</h2>
+        <p class="text-center mb-5">Select an amount that works for you. Every contribution makes a difference.</p>
+        
+        <div class="row g-4">
+            <!-- Donation Option 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="donation-option-card">
+                    <div class="donation-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h4>Community Builder</h4>
+                    <div class="donation-amount">$25</div>
+                    <ul class="donation-features">
+                        <li>Supports one youth program session</li>
+                        <li>Provides resources for a family</li>
+                        <li>Helps maintain our community center</li>
+                    </ul>
+                    <button class="btn btn-donate">Donate Now</button>
+                </div>
+            </div>
+            
+            <!-- Donation Option 2 (Featured) -->
+            <div class="col-lg-4 col-md-6">
+                <div class="donation-option-card featured">
+                    <div class="donation-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h4>Cultural Champion</h4>
+                    <div class="donation-amount">$50</div>
+                    <ul class="donation-features">
+                        <li>Sponsors a cultural event</li>
+                        <li>Provides educational materials</li>
+                        <li>Supports two families for a month</li>
+                        <li>Recognition in our newsletter</li>
+                    </ul>
+                    <button class="btn btn-donate">Donate Now</button>
+                </div>
+            </div>
+            
+            <!-- Donation Option 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="donation-option-card">
+                    <div class="donation-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Legacy Leader</h4>
+                    <div class="donation-amount">$100</div>
+                    <ul class="donation-features">
+                        <li>Funds an entire community program</li>
+                        <li>Supports business development</li>
+                        <li>Provides emergency assistance</li>
+                        <li>Special recognition at events</li>
+                    </ul>
+                    <button class="btn btn-donate">Donate Now</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Custom Donation Form -->
+        <div class="donation-form-container">
+            <h2 class="section-title text-center center">Make a Custom Donation</h2>
+            <p class="text-center mb-4">Prefer to choose your own amount? Use the form below.</p>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Donation Amount</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control" placeholder="Enter amount" min="1" step="1">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Donation Frequency</label>
+                        <div class="btn-group w-100" role="group">
+                            <input type="radio" class="btn-check" name="frequency" id="one-time" checked>
+                            <label class="btn btn-outline-primary" for="one-time">One Time</label>
+                            
+                            <input type="radio" class="btn-check" name="frequency" id="monthly">
+                            <label class="btn btn-outline-primary" for="monthly">Monthly</label>
+                            
+                            <input type="radio" class="btn-check" name="frequency" id="yearly">
+                            <label class="btn btn-outline-primary" for="yearly">Yearly</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Payment Method</label>
+                        <div class="payment-methods">
+                            <div class="payment-method active">
+                                <i class="fab fa-cc-visa"></i>
+                                <div>Credit Card</div>
+                            </div>
+                            <div class="payment-method">
+                                <i class="fab fa-paypal"></i>
+                                <div>PayPal</div>
+                            </div>
+                            <div class="payment-method">
+                                <i class="fas fa-university"></i>
+                                <div>Bank Transfer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" placeholder="Enter your email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Message (Optional)</label>
+                        <textarea class="form-control" rows="3" placeholder="Add a personal message"></textarea>
+                    </div>
+                    
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="anonymous">
+                        <label class="form-check-label" for="anonymous">Donate anonymously</label>
+                    </div>
+                    
+                    <button class="btn btn-donate btn-lg w-100 mt-3">Process Donation</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Testimonials -->
+        <h2 class="section-title">Why People Support CCWC</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"As a Congolese immigrant, CCWC helped my family adjust to life in Worcester. Donating is my way of giving back and ensuring other families receive the same support."</p>
+                    <div class="testimonial-author">— Marcel K., Monthly Donor</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I'm not Congolese, but I believe in supporting cultural diversity in our city. CCWC's work brings people together and makes Worcester a better place for everyone."</p>
+                    <div class="testimonial-author">— Sarah J., Community Supporter</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How will my donation be used?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Your donation supports our community programs, cultural events, youth initiatives, and essential services for Congolese families in Worcester. We maintain transparency with annual reports available to all donors.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is my donation tax-deductible?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes, CCWC is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the extent allowed by law. You will receive a receipt for your records.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I set up recurring donations?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! We offer monthly and yearly recurring donation options. Recurring donations help us plan our programs more effectively and provide sustained support to our community.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What other ways can I support CCWC?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Beyond financial donations, we welcome volunteers, in-kind donations, and corporate sponsorships. You can also support us by attending our events and promoting our work in your networks.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Alternative Donation Methods -->
+        <div class="donation-form-container mt-5">
+            <h2 class="section-title text-center center">Other Ways to Give</h2>
+            <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                    <div class="donation-icon mx-auto">
+                        <i class="fas fa-hands"></i>
+                    </div>
+                    <h4>Volunteer</h4>
+                    <p>Donate your time and skills to support our community initiatives.</p>
+                    <a href="#" class="btn btn-outline-primary">Learn More</a>
+                </div>
+                
+                <div class="col-md-4 text-center mb-4">
+                    <div class="donation-icon mx-auto">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h4>In-Kind Donations</h4>
+                    <p>Contribute goods or services that benefit our community programs.</p>
+                    <a href="#" class="btn btn-outline-primary">Learn More</a>
+                </div>
+                
+                <div class="col-md-4 text-center mb-4">
+                    <div class="donation-icon mx-auto">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h4>Corporate Sponsorship</h4>
+                    <p>Partner with us as a business to support community development.</p>
+                    <a href="#" class="btn btn-outline-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple FAQ toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    if (answer.style.display === 'block') {
+                        answer.style.display = 'none';
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    } else {
+                        answer.style.display = 'block';
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                });
+            });
+            
+            // Payment method selection
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    paymentMethods.forEach(m => m.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports - CCWC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        body {
+            padding-top: 75px;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d3a7a 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .sport-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .sport-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .sport-image {
+            height: 200px;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 4rem;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .sport-info {
+            padding: 25px;
+        }
+        
+        .sport-name {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .sport-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .sport-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .detail-item {
+            text-align: center;
+        }
+        
+        .detail-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .detail-label {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .upcoming-events {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+        
+        .event-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .event-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .event-date {
+            width: 70px;
+            height: 70px;
+            background-color: var(--secondary);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .event-day {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .event-month {
+            font-size: 0.9rem;
+        }
+        
+        .event-details h5 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .event-details p {
+            margin-bottom: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .event-actions {
+            margin-left: auto;
+        }
+        
+        .sports-highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d3a7a 100%);
+            color: white;
+            padding: 60px 0;
+            border-radius: 15px;
+            margin: 60px 0;
+        }
+        
+        .highlight-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .highlight-content h3 {
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .highlight-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+        
+        .team-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+        
+        .team-member {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .team-photo {
+            width: 100px;
+            height: 100px;
+            background-color: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+        
+        .team-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .team-role {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        
+        .back-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-bottom: 30px;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .back-button:hover {
+            background-color: #133a73;
+            color: white;
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        .btn-sports {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-sports:hover {
+            background-color: #c0183a;
+            color: white;
+        }
+        
+        .sport-badge {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 40px 0;
+                text-align: center;
+            }
+            
+            .event-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .event-date {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .event-actions {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+            
+            .sport-details {
+                flex-wrap: wrap;
+            }
+            
+            .detail-item {
+                width: 50%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">CCWC</a>
+            
+            <!-- Mobile menu button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Desktop menu -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About Us</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#about">Our Mission</a></li>
+                            <li><a class="dropdown-item" href="./board.html">Board of Directors</a></li>
+                            <li><a class="dropdown-item" href=".//executive.html">Executive Committee</a></li>
+                            <li><a class="dropdown-item" href="./department.html">Departments</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Resources</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./businesses.html">Businesses</a></li>
+                            <li><a class="dropdown-item" href="./jobs.html">Jobs</a></li>
+                            <li><a class="dropdown-item" href="./services.html">Services</a></li>
+                            <li><a class="dropdown-item" href="./rentals.html">Rentals</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Get Involved</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./volunteer.html">Volunteer</a></li>
+                            <li><a class="dropdown-item" href="./donate.html">Donate</a></li>
+                            <li><a class="dropdown-item" href="./become-member.html">Become a Member</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">News & Media</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./blog.html">Blog</a></li>
+                            <li><a class="dropdown-item" href="./news.html">News</a></li>
+                            <li><a class="dropdown-item" href="./announcement.html">Announcements</a></li>
+                            <li><a class="dropdown-item" href="./gallery.html">Gallery</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Our Work</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./annual-reports.html">Annual Reports</a></li>
+                            <li><a class="dropdown-item" href="./success-stories.html">Success Stories</a></li>
+                            <li><a class="dropdown-item" href="./overview.html">Overview of Activities</a></li>
+                            <li><a class="dropdown-item" href="./sports.html">Sports</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <a href="#member" class="btn btn-accent ms-2">Become a Member</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (Offcanvas) -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">CCWC Menu</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About Us</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#about">Our Mission</a></li>
+                        <li><a class="dropdown-item" href="./board.html">Board of Directors</a></li>
+                        <li><a class="dropdown-item" href="./executive.html">Executive Committee</a></li>
+                        <li><a class="dropdown-item" href="./department.html">Departments</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Resources</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="./businesses.html">Businesses</a></li>
+                        <li><a class="dropdown-item" href="./jobs.html">Jobs</a></li>
+                        <li><a class="dropdown-item" href="./services.html">Services</a></li>
+                        <li><a class="dropdown-item" href="./rentals.html">Rentals</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Get Involved</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="./volunteer.html">Volunteer</a></li>
+                        <li><a class="dropdown-item" href="./donate.html">Donate</a></li>
+                        <li><a class="dropdown-item" href="./become-member.html">Become a Member</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">News & Media</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="./blog.html">Blog</a></li>
+                        <li><a class="dropdown-item" href="./news.html">News</a></li>
+                        <li><a class="dropdown-item" href="./announcement.html">Announcements</a></li>
+                        <li><a class="dropdown-item" href="./gallery.html">Gallery</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Our Work</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="./annual-reports.html">Annual Reports</a></li>
+                        <li><a class="dropdown-item" href="./success-stories.html">Success Stories</a></li>
+                        <li><a class="dropdown-item" href="./overview.html">Overview of Activities</a></li>
+                        <li><a class="dropdown-item" href="./sports.html">Sports</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item mt-3">
+                    <a href="#member" class="btn btn-accent w-100">Become a Member</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="#" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="container">
+                <h1 class="display-4 fw-bold">Sports & Recreation</h1>
+                <p class="lead">Promoting health, teamwork, and community spirit through sports</p>
+            </div>
+        </div>
+        
+        <!-- Sports Programs Section -->
+        <h2 class="section-title">Our Sports Programs</h2>
+        
+        <div class="row g-4">
+            <!-- Soccer -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sport-card">
+                    <div class="sport-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="sport-info">
+                        <span class="sport-badge">Most Popular</span>
+                        <h4 class="sport-name">Soccer</h4>
+                        <p class="sport-description">Our most popular sport with multiple teams for different age groups and skill levels. Join our competitive leagues or casual pickup games.</p>
+                        <div class="sport-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <div class="detail-label">Teams</div>
+                                <div class="detail-value">8</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div class="detail-label">Season</div>
+                                <div class="detail-value">Year-round</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-trophy"></i>
+                                <div class="detail-label">Level</div>
+                                <div class="detail-value">All</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-sports w-100 mt-3">Join Team</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Basketball -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sport-card">
+                    <div class="sport-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <i class="fas fa-basketball-ball"></i>
+                    </div>
+                    <div class="sport-info">
+                        <h4 class="sport-name">Basketball</h4>
+                        <p class="sport-description">Fast-paced indoor basketball for youth and adults. We have competitive leagues and recreational play options available.</p>
+                        <div class="sport-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <div class="detail-label">Teams</div>
+                                <div class="detail-value">6</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div class="detail-label">Season</div>
+                                <div class="detail-value">Winter/Spring</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-trophy"></i>
+                                <div class="detail-label">Level</div>
+                                <div class="detail-value">All</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-sports w-100 mt-3">Join Team</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Volleyball -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sport-card">
+                    <div class="sport-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <i class="fas fa-volleyball-ball"></i>
+                    </div>
+                    <div class="sport-info">
+                        <h4 class="sport-name">Volleyball</h4>
+                        <p class="sport-description">Indoor and beach volleyball for all skill levels. Perfect for those looking for a fun, social sport with great exercise.</p>
+                        <div class="sport-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <div class="detail-label">Teams</div>
+                                <div class="detail-value">4</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div class="detail-label">Season</div>
+                                <div class="detail-value">Summer/Fall</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-trophy"></i>
+                                <div class="detail-label">Level</div>
+                                <div class="detail-value">Recreational</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-sports w-100 mt-3">Join Team</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Running Club -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sport-card">
+                    <div class="sport-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1552674605-db6ffd4facb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <div class="sport-info">
+                        <span class="sport-badge">New Program</span>
+                        <h4 class="sport-name">Running Club</h4>
+                        <p class="sport-description">Weekly group runs for all paces. Train for local races or just enjoy the camaraderie and health benefits of running.</p>
+                        <div class="sport-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <div class="detail-label">Members</div>
+                                <div class="detail-value">45+</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div class="detail-label">Schedule</div>
+                                <div class="detail-value">Weekly</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-trophy"></i>
+                                <div class="detail-label">Level</div>
+                                <div class="detail-value">All</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-sports w-100 mt-3">Join Club</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Youth Programs -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sport-card">
+                    <div class="sport-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="sport-info">
+                        <h4 class="sport-name">Youth Programs</h4>
+                        <p class="sport-description">Sports development programs for children ages 5-16. Focus on skill development, teamwork, and healthy habits.</p>
+                        <div class="sport-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <div class="detail-label">Age Groups</div>
+                                <div class="detail-value">5-16</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div class="detail-label">Season</div>
+                                <div class="detail-value">Year-round</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-trophy"></i>
+                                <div class="detail-label">Focus</div>
+                                <div class="detail-value">Development</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-sports w-100 mt-3">Register</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Traditional Games -->
+            <div class="col-lg-4 col-md-6">
+                <div class="sport-card">
+                    <div class="sport-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <div class="sport-info">
+                        <span class="sport-badge">Cultural</span>
+                        <h4 class="sport-name">Traditional Games</h4>
+                        <p class="sport-description">Learn and play traditional Congolese games. A great way to connect with our cultural heritage while having fun.</p>
+                        <div class="sport-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <div class="detail-label">Participants</div>
+                                <div class="detail-value">All Ages</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div class="detail-label">Schedule</div>
+                                <div class="detail-value">Monthly</div>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-trophy"></i>
+                                <div class="detail-label">Focus</div>
+                                <div class="detail-value">Cultural</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-sports w-100 mt-3">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Upcoming Events -->
+        <div class="upcoming-events">
+            <h2 class="section-title">Upcoming Sports Events</h2>
+            
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="event-day">15</div>
+                    <div class="event-month">JUN</div>
+                </div>
+                <div class="event-details">
+                    <h5>Annual CCWC Soccer Tournament</h5>
+                    <p>Join us for our biggest soccer event of the year! Teams from across New England will compete.</p>
+                    <p><i class="fas fa-map-marker-alt me-1"></i> Worcester State University Field</p>
+                </div>
+                <div class="event-actions">
+                    <button class="btn btn-sports">Register Team</button>
+                </div>
+            </div>
+            
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="event-day">22</div>
+                    <div class="event-month">JUN</div>
+                </div>
+                <div class="event-details">
+                    <h5>Youth Basketball Skills Clinic</h5>
+                    <p>Free clinic for youth ages 8-14. Focus on fundamental skills with experienced coaches.</p>
+                    <p><i class="fas fa-map-marker-alt me-1"></i> CCWC Community Center</p>
+                </div>
+                <div class="event-actions">
+                    <button class="btn btn-sports">Sign Up</button>
+                </div>
+            </div>
+            
+            <div class="event-item">
+                <div class="event-date">
+                    <div class="event-day">30</div>
+                    <div class="event-month">JUN</div>
+                </div>
+                <div class="event-details">
+                    <h5>Community Fun Run & Health Fair</h5>
+                    <p>5K fun run followed by a health fair with free screenings and wellness information.</p>
+                    <p><i class="fas fa-map-marker-alt me-1"></i> Elm Park, Worcester</p>
+                </div>
+                <div class="event-actions">
+                    <button class="btn btn-sports">Register</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sports Highlight Section -->
+        <div class="sports-highlight">
+            <div class="highlight-content">
+                <h3>Building Community Through Sports</h3>
+                <p>At CCWC, we believe sports are more than just games. They're opportunities to build lasting friendships, develop leadership skills, and strengthen our community bonds. Whether you're a competitive athlete or just looking for fun ways to stay active, we have a place for you.</p>
+                <button class="btn btn-sports">Become a Sports Volunteer</button>
+            </div>
+        </div>
+        
+        <!-- Sports Leadership Team -->
+        <div class="team-section">
+            <h2 class="section-title">Sports Committee Leadership</h2>
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="team-member">
+                        <div class="team-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="team-name">Samuel Kanda</div>
+                        <div class="team-role">Sports Director</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="team-member">
+                        <div class="team-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="team-name">Grace Mbuyi</div>
+                        <div class="team-role">Youth Programs</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="team-member">
+                        <div class="team-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="team-name">Paul Tshibangu</div>
+                        <div class="team-role">Soccer Coordinator</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="team-member">
+                        <div class="team-photo">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="team-name">Sarah Lukunku</div>
+                        <div class="team-role">Basketball Coordinator</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Information -->
+        <div class="upcoming-events">
+            <h2 class="section-title">Get Involved in Sports</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Interested in joining a team, volunteering as a coach, or sponsoring our sports programs?</p>
+                    <p><i class="fas fa-envelope me-2 text-primary"></i> <strong>Email:</strong> sports@ccwc.org</p>
+                    <p><i class="fas fa-phone me-2 text-primary"></i> <strong>Phone:</strong> (508) 123-4567 ext. 3</p>
+                </div>
+                <div class="col-md-6">
+                    <p>We're always looking for volunteers to help coach, organize events, or assist with equipment.</p>
+                    <p>No experience necessary - we provide training for all volunteer positions!</p>
+                    <button class="btn btn-sports">Volunteer Today</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

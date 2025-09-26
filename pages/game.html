@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Rami (Rummy) — Congolese Card Game MVP Mockup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-900 text-gray-100 antialiased leading-normal">
+    <div class="max-w-4xl mx-auto p-4">
+      <header class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-2xl font-bold">Rami for Congo — MVP Mockup</h1>
+          <p class="text-sm text-gray-300">1v1 quick matches • Winner takes all • Mobile-first UI</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-right">
+            <div class="text-xs text-gray-400">Wallet</div>
+            <div id="balance" class="font-semibold text-lg">FC 0</div>
+          </div>
+          <button id="depositBtn" class="bg-green-600 hover:bg-green-500 text-white px-3 py-2 rounded">Deposit</button>
+        </div>
+      </header>
+
+      <!-- Lobby -->
+      <section id="lobby" class="bg-gray-800 rounded-lg p-4 mb-6">
+        <h2 class="text-lg font-semibold mb-3">Join a table</h2>
+        <p class="text-sm text-gray-300 mb-4">Choose a stake. Each match is 1v1. Winner gets the full pot minus platform fee.</p>
+
+        <div class="grid grid-cols-3 gap-3">
+          <button class="stakeBtn bg-gray-700 hover:bg-gray-600 py-3 rounded" data-stake="1000">FC 1,000</button>
+          <button class="stakeBtn bg-gray-700 hover:bg-gray-600 py-3 rounded" data-stake="5000">FC 5,000</button>
+          <button class="stakeBtn bg-gray-700 hover:bg-gray-600 py-3 rounded" data-stake="10000">FC 10,000</button>
+        </div>
+
+        <div id="lobbyMsg" class="mt-4 text-sm text-yellow-300"></div>
+      </section>
+
+      <!-- Game Area -->
+      <section id="gameArea" class="hidden bg-gray-800 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-semibold">Table • Stake: <span id="currentStake">FC 0</span></h3>
+          <div class="text-sm text-gray-400">Platform fee: <span id="feePct">5%</span></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-gray-700 p-4 rounded">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <div class="text-xs text-gray-300">You</div>
+                <div id="youName" class="font-semibold">Player</div>
+              </div>
+              <div class="text-right">
+                <div class="text-xs text-gray-300">Stake paid</div>
+                <div id="youStake">FC 0</div>
+              </div>
+            </div>
+            <div id="youHand" class="flex gap-2 flex-wrap"></div>
+          </div>
+
+          <div class="bg-gray-700 p-4 rounded">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <div class="text-xs text-gray-300">Opponent</div>
+                <div id="opponentName" class="font-semibold">CPU</div>
+              </div>
+              <div class="text-right">
+                <div class="text-xs text-gray-300">Stake paid</div>
+                <div id="opponentStake">FC 0</div>
+              </div>
+            </div>
+            <div id="opponentHand" class="flex gap-2 flex-wrap"></div>
+          </div>
+        </div>
+
+        <div class="mt-4 flex gap-2">
+          <button id="dealBtn" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded">Deal</button>
+          <button id="finishBtn" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded">Finish & Determine Winner</button>
+          <button id="leaveBtn" class="ml-auto bg-red-600 hover:bg-red-500 px-4 py-2 rounded">Leave Table</button>
+        </div>
+
+        <div id="gameMsg" class="mt-3 text-sm text-yellow-300"></div>
+      </section>
+
+      <!-- Footer / Info -->
+      <footer class="mt-6 text-sm text-gray-400">
+        <p>Prototype: this mockup simulates deposit/join/deal/winner flow. Replace game logic with full Rami rules when ready.</p>
+      </footer>
+    </div>
+
+    <script>
+      // Simple mockup JS state & functions
+      const state = {
+        balance: 0,
+        currentStake: 0,
+        feePct: 5,
+        inTable: false,
+        youHand: [],
+        opponentHand: []
+      }
+
+      const $balance = document.getElementById('balance')
+      const $deposit = document.getElementById('depositBtn')
+      const $stakeBtns = document.querySelectorAll('.stakeBtn')
+      const $lobbyMsg = document.getElementById('lobbyMsg')
+      const $gameArea = document.getElementById('gameArea')
+      const $currentStake = document.getElementById('currentStake')
+      const $youStake = document.getElementById('youStake')
+      const $opponentStake = document.getElementById('opponentStake')
+      const $youHand = document.getElementById('youHand')
+      const $opponentHand = document.getElementById('opponentHand')
+      const $dealBtn = document.getElementById('dealBtn')
+      const $finishBtn = document.getElementById('finishBtn')
+      const $leaveBtn = document.getElementById('leaveBtn')
+      const $gameMsg = document.getElementById('gameMsg')
+      const $feePct = document.getElementById('feePct')
+
+      // Helper: render balance
+      function renderBalance(){
+        $balance.textContent = `FC ${state.balance.toLocaleString()}`
+      }
+
+      // Simulate deposit modal (prompt)
+      $deposit.addEventListener('click', ()=>{
+        const amt = parseInt(prompt('Enter deposit amount in FC (e.g. 5000):', '5000')) || 0
+        if(amt>0){
+          state.balance += amt
+          renderBalance()
+          $lobbyMsg.textContent = 'Deposit successful. Choose a stake to join a table.'
+        }
+      })
+
+      // Stake buttons: join table flow
+      $stakeBtns.forEach(btn => {
+        btn.addEventListener('click', ()=>{
+          const stake = parseInt(btn.dataset.stake,10)
+          if(state.inTable){
+            $lobbyMsg.textContent = 'You are already at a table. Leave current table to join another.'
+            return
+          }
+          if(state.balance < stake){
+            $lobbyMsg.textContent = 'Insufficient balance. Deposit or choose a smaller stake.'
+            return
+          }
+          // pay stake (both players pay)
+          state.balance -= stake
+          state.currentStake = stake
+          state.inTable = true
+          $currentStake.textContent = `FC ${stake.toLocaleString()}`
+          $youStake.textContent = `FC ${stake.toLocaleString()}`
+          $opponentStake.textContent = `FC ${stake.toLocaleString()}`
+          $gameArea.classList.remove('hidden')
+          $lobbyMsg.textContent = 'Searching opponent... Found CPU opponent. Ready to deal.'
+          renderBalance()
+        })
+      })
+
+      // Deck & dealing (simple values A-K, 4 suits)
+      const ranks = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
+      const suits = ['♠','♥','♦','♣']
+      function buildDeck(){
+        const deck = []
+        for(const r of ranks){
+          for(const s of suits){
+            // value for simple scoring
+            let val = ranks.indexOf(r)+1
+            deck.push({code: r+s, rank:r, suit:s, value: val})
+          }
+        }
+        return deck
+      }
+
+      function shuffle(a){
+        for(let i=a.length-1;i>0;i--){
+          const j = Math.floor(Math.random() * (i+1))
+          ;[a[i],a[j]] = [a[j],a[i]]
+        }
+      }
+
+      function renderHand(el, hand, hide=false){
+        el.innerHTML = ''
+        for(const c of hand){
+          const card = document.createElement('div')
+          card.className = 'px-3 py-2 bg-gray-800 border border-gray-600 rounded text-sm'
+          card.textContent = hide ? '🂠' : c.code
+          el.appendChild(card)
+        }
+      }
+
+      $dealBtn.addEventListener('click', ()=>{
+        if(!state.inTable){ $gameMsg.textContent = 'Join a table first.'; return }
+        // build deck, shuffle, deal 5 cards each
+        const deck = buildDeck()
+        shuffle(deck)
+        state.youHand = deck.splice(0,5)
+        state.opponentHand = deck.splice(0,5)
+        renderHand($youHand, state.youHand)
+        renderHand($opponentHand, state.opponentHand, true)
+        $gameMsg.textContent = 'Cards dealt. Press "Finish & Determine Winner" to settle.'
+      })
+
+      $finishBtn.addEventListener('click', ()=>{
+        if(!state.inTable || state.youHand.length===0){ $gameMsg.textContent='Deal cards first.'; return }
+        // simple scoring: sum of values
+        const youScore = state.youHand.reduce((s,c)=>s+c.value,0)
+        const oppScore = state.opponentHand.reduce((s,c)=>s+c.value,0)
+        const stake = state.currentStake
+        const pot = stake * 2
+        const fee = Math.floor(pot * state.feePct / 100)
+        const winner = youScore >= oppScore ? 'you' : 'opponent'
+
+        if(winner==='you'){
+          // add pot minus fee to balance
+          state.balance += (pot - fee)
+          $gameMsg.innerHTML = `<span class="text-green-300 font-semibold">You win!</span> You: ${youScore} — Opponent: ${oppScore}. Pot: FC ${pot.toLocaleString()} — Fee: FC ${fee.toLocaleString()}`
+        } else {
+          $gameMsg.innerHTML = `<span class="text-red-300 font-semibold">You lost.</span> You: ${youScore} — Opponent: ${oppScore}. Pot: FC ${pot.toLocaleString()} — Fee: FC ${fee.toLocaleString()}`
+        }
+
+        // reveal opponent hand and update UI
+        renderHand($opponentHand, state.opponentHand, false)
+        renderBalance()
+
+        // reset table state (simple: leave table automatically after finish)
+        state.currentStake = 0
+        state.inTable = false
+        state.youHand = []
+        state.opponentHand = []
+        $youStake.textContent = `FC 50000000`
+        $opponentStake.textContent = `FC 50000000`
+        $currentStake.textContent = `FC 50000000`
+        // show lobby again after a short delay
+        setTimeout(()=>{
+          $gameArea.classList.add('hidden')
+        }, 1200)
+      })
+
+      $leaveBtn.addEventListener('click', ()=>{
+        // refund stake to player if they leave before deal (simple rule)
+        if(state.inTable && state.currentStake>0){
+          state.balance += state.currentStake
+        }
+        state.inTable = false
+        state.currentStake = 0
+        state.youHand = []
+        state.opponentHand = []
+        $youStake.textContent = `FC 0`
+        $opponentStake.textContent = `FC 0`
+        $currentStake.textContent = `FC 0`
+        renderBalance()
+        $gameArea.classList.add('hidden')
+        $lobbyMsg.textContent = 'Left the table.'
+      })
+
+      // initial render
+      renderBalance()
+      $feePct.textContent = `${state.feePct}%`
+    </script>
+  </body>
+</html>

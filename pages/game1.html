@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkers MVP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .square { width: 48px; height: 48px; }
+    .piece { width: 36px; height: 36px; border-radius: 50%; }
+    .red { background: crimson; }
+    .black { background: black; }
+    .highlight { outline: 3px solid yellow; }
+  </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-4">
+  <h1 class="text-2xl font-bold mb-4">Checkers MVP</h1>
+
+  <!-- Balance & Stake -->
+  <div class="mb-4 text-center">
+    <p class="mb-2">Balance: <span id="balance">100</span> CDF</p>
+    <input id="stake" type="number" placeholder="Enter stake" class="text-black p-2 rounded mb-2">
+    <button id="joinBtn" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Join Match</button>
+  </div>
+
+  <!-- Game Area -->
+  <div id="gameArea" class="hidden flex flex-col items-center">
+    <div id="board" class="grid grid-cols-8 gap-0"></div>
+    <p class="mt-4">Current Turn: <span id="turn">Red</span></p>
+    <button id="endBtn" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded mt-4">End Match</button>
+  </div>
+
+  <script>
+    let balance = 100;
+    let currentStake = 0;
+    const balanceEl = document.getElementById("balance");
+    const stakeEl = document.getElementById("stake");
+    const joinBtn = document.getElementById("joinBtn");
+    const gameArea = document.getElementById("gameArea");
+    const boardEl = document.getElementById("board");
+    const turnEl = document.getElementById("turn");
+    const endBtn = document.getElementById("endBtn");
+
+    let board = [];
+    let turn = "red";
+    let selected = null;
+
+    function initBoard() {
+      board = [];
+      for (let r=0;r<8;r++) {
+        let row = [];
+        for (let c=0;c<8;c++) {
+          let piece = null;
+          if (r<3 && (r+c)%2===1) piece = "black";
+          if (r>4 && (r+c)%2===1) piece = "red";
+          row.push(piece);
+        }
+        board.push(row);
+      }
+    }
+
+    function renderBoard() {
+      boardEl.innerHTML = "";
+      for (let r=0;r<8;r++) {
+        for (let c=0;c<8;c++) {
+          const sq = document.createElement("div");
+          sq.className = "square flex items-center justify-center " +
+            (((r+c)%2===0) ? "bg-gray-200" : "bg-green-700");
+          sq.dataset.row = r; sq.dataset.col = c;
+          if (board[r][c]) {
+            const piece = document.createElement("div");
+            piece.className = "piece " + (board[r][c]==="red"?"red":"black");
+            if (selected && selected.r===r && selected.c===c) {
+              piece.classList.add("highlight");
+            }
+            sq.appendChild(piece);
+          }
+          sq.onclick = ()=>handleClick(r,c);
+          boardEl.appendChild(sq);
+        }
+      }
+      turnEl.textContent = turn.charAt(0).toUpperCase()+turn.slice(1);
+    }
+
+    function handleClick(r,c) {
+      if (selected) {
+        // Try to move
+        if (isValidMove(selected.r, selected.c, r, c)) {
+          board[r][c] = board[selected.r][selected.c];
+          board[selected.r][selected.c] = null;
+          // Capture
+          if (Math.abs(r-selected.r)===2) {
+            let mr=(r+selected.r)/2, mc=(c+selected.c)/2;
+            board[mr][mc]=null;
+          }
+          selected=null;
+          turn=(turn==="red"?"black":"red");
+        } else {
+          selected=null;
+        }
+      } else {
+        if (board[r][c]===turn) {
+          selected={r,c};
+        }
+      }
+      renderBoard();
+    }
+
+    function isValidMove(r1,c1,r2,c2) {
+      if (board[r2][c2]!==null) return false;
+      let dr=r2-r1, dc=Math.abs(c2-c1);
+      if (board[r1][c1]==="red") {
+        if (dr===-1 && dc===1) return true;
+        if (dr===-2 && dc===2) return board[(r1+r2)/2][(c1+c2)/2]==="black";
+      }
+      if (board[r1][c1]==="black") {
+        if (dr===1 && dc===1) return true;
+        if (dr===2 && dc===2) return board[(r1+r2)/2][(c1+c2)/2]==="red";
+      }
+      return false;
+    }
+
+    function endMatch() {
+      let redCount=0, blackCount=0;
+      for (let r=0;r<8;r++) for (let c=0;c<8;c++) {
+        if (board[r][c]==="red") redCount++;
+        if (board[r][c]==="black") blackCount++;
+      }
+      let winner="Draw";
+      if (redCount>blackCount) { winner="Red"; balance+=currentStake*2*0.95; }
+      else if (blackCount>redCount) { winner="Black"; }
+      else balance+=currentStake;
+      alert("Match ended! Winner: "+winner);
+      balanceEl.textContent = balance;
+      currentStake=0;
+      gameArea.classList.add("hidden");
+    }
+
+    joinBtn.onclick=()=>{
+      const stake=parseInt(stakeEl.value);
+      if(isNaN(stake)||stake<=0||stake>balance) return alert("Invalid stake");
+      currentStake=stake;
+      balance-=stake;
+      balanceEl.textContent=balance;
+      initBoard();
+      renderBoard();
+      gameArea.classList.remove("hidden");
+    };
+
+    endBtn.onclick=endMatch;
+
+    initBoard();
+    renderBoard();
+  </script>
+</body>
+</html>

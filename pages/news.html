@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - CCWC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="../styles/styles.css"> -->
+    <style>
+        :root {
+            --primary: #194a8d;
+            --secondary: #fecf6a;
+            --accent: #df1c44;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding-top: 20px;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d3a7a 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .news-image {
+            height: 200px;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 3rem;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-category {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .category-announcement {
+            background-color: rgba(223, 28, 68, 0.1);
+            color: var(--accent);
+        }
+        
+        .category-event {
+            background-color: rgba(25, 74, 141, 0.1);
+            color: var(--primary);
+        }
+        
+        .category-success {
+            background-color: rgba(254, 207, 106, 0.2);
+            color: #b68d2c;
+        }
+        
+        .news-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .news-date {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .news-date i {
+            margin-right: 5px;
+        }
+        
+        .news-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .read-more:hover {
+            color: var(--accent);
+        }
+        
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .read-more:hover i {
+            transform: translateX(3px);
+        }
+        
+        .featured-news {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d3a7a 100%);
+            color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .featured-content {
+            padding: 40px;
+        }
+        
+        .featured-badge {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .featured-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .featured-excerpt {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .news-filter {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .filter-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            color: #495057;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, #fec04a 100%);
+            color: #333;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .newsletter-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .back-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-bottom: 30px;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .back-button:hover {
+            background-color: #133a73;
+            color: white;
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .page-link {
+            color: var(--primary);
+            border: 1px solid #dee2e6;
+            padding: 8px 15px;
+        }
+        
+        .page-link:hover {
+            color: var(--accent);
+            background-color: #f8f9fa;
+            border-color: #dee2e6;
+        }
+        
+        .page-item.active .page-link {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 40px 0;
+                text-align: center;
+            }
+            
+            .featured-content {
+                padding: 25px;
+            }
+            
+            .featured-title {
+                font-size: 1.5rem;
+            }
+            
+            .news-filter {
+                padding: 20px;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="../index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="container">
+                <h1 class="display-4 fw-bold">News & Updates</h1>
+                <p class="lead">Stay informed about the latest events, announcements, and success stories from our community</p>
+            </div>
+        </div>
+        
+        <!-- Featured News -->
+        <div class="featured-news">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <div class="featured-content">
+                        <span class="featured-badge">Featured Story</span>
+                        <h2 class="featured-title">Annual Cultural Festival Draws Record Attendance</h2>
+                        <p class="featured-excerpt">Our 2023 Cultural Festival brought together over 500 community members for a day of celebration, traditional food, music, and dance.</p>
+                        <a href="#" class="read-more text-white">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'); height: 100%; min-height: 300px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- News Filter -->
+        <div class="news-filter">
+            <h3 class="filter-title">Filter by Category</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active">All News</button>
+                <button class="filter-btn">Announcements</button>
+                <button class="filter-btn">Events</button>
+                <button class="filter-btn">Success Stories</button>
+                <button class="filter-btn">Community Updates</button>
+                <button class="filter-btn">Programs</button>
+            </div>
+        </div>
+        
+        <!-- News Grid -->
+        <h2 class="section-title">Latest News</h2>
+        
+        <div class="row g-4">
+            <!-- News Item 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category category-announcement">Announcement</span>
+                        <h4 class="news-title">New Community Center Hours Starting Next Month</h4>
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> October 15, 2023
+                        </div>
+                        <p class="news-excerpt">We're expanding our community center hours to better serve working families. The center will now be open until 9 PM on weekdays.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Item 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category category-event">Event</span>
+                        <h4 class="news-title">Youth Basketball Tournament Registration Now Open</h4>
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> October 12, 2023
+                        </div>
+                        <p class="news-excerpt">Our annual youth basketball tournament returns next month. Teams can now register for this exciting community event.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Item 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category category-success">Success Story</span>
+                        <h4 class="news-title">Local Business Owner Expands to Second Location</h4>
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> October 8, 2023
+                        </div>
+                        <p class="news-excerpt">Congolese Market, a CCWC member business, has successfully expanded to a second location in Worcester.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Item 4 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category category-announcement">Announcement</span>
+                        <h4 class="news-title">New ESL Classes Starting in November</h4>
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> October 5, 2023
+                        </div>
+                        <p class="news-excerpt">We're launching new English as a Second Language classes with flexible schedules for working adults.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Item 5 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category category-event">Event</span>
+                        <h4 class="news-title">Community Health Fair Offers Free Screenings</h4>
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> October 1, 2023
+                        </div>
+                        <p class="news-excerpt">Join us for our annual health fair with free health screenings, wellness workshops, and resources for the whole family.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Item 6 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category category-success">Success Story</span>
+                        <h4 class="news-title">CCWC Scholarship Recipient Graduates with Honors</h4>
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> September 28, 2023
+                        </div>
+                        <p class="news-excerpt">Sarah K., a CCWC scholarship recipient, has graduated from Worcester State University with highest honors.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Newsletter Section -->
+        <div class="newsletter-section">
+            <h3 class="newsletter-title">Stay Connected with CCWC</h3>
+            <p>Subscribe to our newsletter to receive updates directly in your inbox</p>
+            <div class="newsletter-form">
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Your email address">
+                    <button class="btn btn-primary" type="button">Subscribe</button>
+                </div>
+                <small class="text-muted mt-2 d-block">We respect your privacy. Unsubscribe at any time.</small>
+            </div>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination-container">
+            <nav aria-label="News pagination">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // In a real implementation, you would filter the news items here
+                    // This is just a visual demonstration
+                });
+            });
+        });
+    </script>
+</body>
+</html>

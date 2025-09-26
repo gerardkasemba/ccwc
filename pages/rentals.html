@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rentals - CCWC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="../index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="container">
+                <h1 class="display-4 fw-bold">Community Rentals</h1>
+                <p class="lead">Find housing, event spaces, and equipment rentals within our community</p>
+            </div>
+        </div>
+        
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <h4 class="filter-title">Filter Rentals</h4>
+            <div class="d-flex flex-wrap">
+                <button class="btn-filter active">All Rentals</button>
+                <button class="btn-filter">Housing</button>
+                <button class="btn-filter">Event Spaces</button>
+                <button class="btn-filter">Equipment</button>
+                <button class="btn-filter">Vehicles</button>
+                <button class="btn-filter">Commercial</button>
+            </div>
+        </div>
+        
+        <!-- Rental Categories -->
+        <div class="rental-categories">
+            <h2 class="section-title">Rental Categories</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="category-text">
+                            <h5>Housing Rentals</h5>
+                            <p>Apartments, houses, and rooms available for short-term or long-term stays</p>
+                        </div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="category-text">
+                            <h5>Event Spaces</h5>
+                            <p>Venues for weddings, parties, meetings, and community gatherings</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="category-text">
+                            <h5>Equipment Rentals</h5>
+                            <p>Tools, party supplies, audio-visual equipment, and more</p>
+                        </div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="category-text">
+                            <h5>Vehicle Rentals</h5>
+                            <p>Cars, vans, and trucks available for community members</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Rental Listings -->
+        <h2 class="section-title">Available Rentals</h2>
+        
+        <div class="row g-4">
+            <!-- Rental 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="rental-card">
+                    <div class="rental-image">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="rental-info">
+                        <h4 class="rental-title">3-Bedroom Apartment</h4>
+                        <div class="rental-location">Main South, Worcester</div>
+                        <div class="rental-price">$1,800/month</div>
+                        <p class="rental-details">Spacious apartment with updated kitchen, hardwood floors, and off-street parking. Available June 1st.</p>
+                        <div class="rental-features">
+                            <span class="feature-badge">3 Bedrooms</span>
+                            <span class="feature-badge">2 Bathrooms</span>
+                            <span class="feature-badge">Pet Friendly</span>
+                            <span class="feature-badge">Parking</span>
+                        </div>
+                        <div class="contact-info">
+                            <a href="tel:5081234567"><i class="fas fa-phone me-1"></i> (508) 123-4567</a>
+                            <a href="mailto:rental@ccwc.org"><i class="fas fa-envelope me-1"></i> Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rental 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="rental-card">
+                    <div class="rental-image">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <div class="rental-info">
+                        <h4 class="rental-title">Community Event Hall</h4>
+                        <div class="rental-location">CCWC Community Center</div>
+                        <div class="rental-price">$150/day</div>
+                        <p class="rental-details">Perfect for weddings, parties, and community events. Capacity up to 150 people with tables and chairs included.</p>
+                        <div class="rental-features">
+                            <span class="feature-badge">150 Capacity</span>
+                            <span class="feature-badge">Tables & Chairs</span>
+                            <span class="feature-badge">Kitchen Access</span>
+                            <span class="feature-badge">Audio System</span>
+                        </div>
+                        <div class="contact-info">
+                            <a href="tel:5081234567"><i class="fas fa-phone me-1"></i> (508) 123-4567</a>
+                            <a href="mailto:events@ccwc.org"><i class="fas fa-envelope me-1"></i> Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rental 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="rental-card">
+                    <div class="rental-image">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="rental-info">
+                        <h4 class="rental-title">Moving Equipment Set</h4>
+                        <div class="rental-location">Available for Pickup</div>
+                        <div class="rental-price">$40/day</div>
+                        <p class="rental-details">Complete moving set includes dolly, furniture pads, hand truck, and straps. Perfect for apartment moves.</p>
+                        <div class="rental-features">
+                            <span class="feature-badge">Dolly</span>
+                            <span class="feature-badge">Furniture Pads</span>
+                            <span class="feature-badge">Hand Truck</span>
+                            <span class="feature-badge">Straps</span>
+                        </div>
+                        <div class="contact-info">
+                            <a href="tel:5081234567"><i class="fas fa-phone me-1"></i> (508) 123-4567</a>
+                            <a href="mailto:equipment@ccwc.org"><i class="fas fa-envelope me-1"></i> Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rental 4 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="rental-card">
+                    <div class="rental-image">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="rental-info">
+                        <h4 class="rental-title">7-Passenger Minivan</h4>
+                        <div class="rental-location">Worcester, MA</div>
+                        <div class="rental-price">$65/day</div>
+                        <p class="rental-details">Perfect for family trips or group outings. Well-maintained vehicle with insurance included for CCWC members.</p>
+                        <div class="rental-features">
+                            <span class="feature-badge">7 Passengers</span>
+                            <span class="feature-badge">Insurance Included</span>
+                            <span class="feature-badge">GPS</span>
+                            <span class="feature-badge">Child Seats Available</span>
+                        </div>
+                        <div class="contact-info">
+                            <a href="tel:5081234567"><i class="fas fa-phone me-1"></i> (508) 123-4567</a>
+                            <a href="mailto:transport@ccwc.org"><i class="fas fa-envelope me-1"></i> Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rental 5 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="rental-card">
+                    <div class="rental-image">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="rental-info">
+                        <h4 class="rental-title">Studio Apartment</h4>
+                        <div class="rental-location">Lincoln Street, Worcester</div>
+                        <div class="rental-price">$1,200/month</div>
+                        <p class="rental-details">Cozy studio apartment with utilities included. Perfect for students or single professionals. Available immediately.</p>
+                        <div class="rental-features">
+                            <span class="feature-badge">Utilities Included</span>
+                            <span class="feature-badge">Laundry</span>
+                            <span class="feature-badge">Furnished</span>
+                            <span class="feature-badge">Near WPI</span>
+                        </div>
+                        <div class="contact-info">
+                            <a href="tel:5081234567"><i class="fas fa-phone me-1"></i> (508) 123-4567</a>
+                            <a href="mailto:rental@ccwc.org"><i class="fas fa-envelope me-1"></i> Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rental 6 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="rental-card">
+                    <div class="rental-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="rental-info">
+                        <h4 class="rental-title">Party Equipment Package</h4>
+                        <div class="rental-location">Available for Delivery</div>
+                        <div class="rental-price">$75/event</div>
+                        <p class="rental-details">Complete party package includes tables, chairs, linens, and basic dinnerware for up to 50 guests.</p>
+                        <div class="rental-features">
+                            <span class="feature-badge">50 Guests</span>
+                            <span class="feature-badge">Tables & Chairs</span>
+                            <span class="feature-badge">Linens</span>
+                            <span class="feature-badge">Dinnerware</span>
+                        </div>
+                        <div class="contact-info">
+                            <a href="tel:5081234567"><i class="fas fa-phone me-1"></i> (508) 123-4567</a>
+                            <a href="mailto:events@ccwc.org"><i class="fas fa-envelope me-1"></i> Email</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- How It Works Section -->
+        <div class="how-it-works">
+            <h3>How Our Rental System Works</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h5>Browse Listings</h5>
+                        <p>Explore available rentals in our community directory</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h5>Contact Owner</h5>
+                        <p>Reach out directly to the rental provider</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h5>Arrange Rental</h5>
+                        <p>Finalize details and complete your rental agreement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- List Your Rental -->
+        <div class="rental-categories">
+            <h2 class="section-title">Have Something to Rent?</h2>
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <p>List your property, equipment, or space in our community rentals directory. Reach people you trust within our community.</p>
+                    <ul>
+                        <li>Free listing for CCWC members</li>
+                        <li>Reach a trusted community network</li>
+                        <li>Support fellow community members</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 text-center">
+                    <button class="btn btn-primary btn-lg">List Your Rental</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.btn-filter');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // In a real implementation, you would filter the rental listings here
+                    // For this example, we'll just show an alert
+                    const filterText = this.textContent;
+                    if (filterText !== 'All Rentals') {
+                        alert(`Filtering by: ${filterText}. In a real implementation, this would filter the rental listings.`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

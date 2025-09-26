@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Directory - CCWC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="../index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="container">
+                <h1 class="display-4 fw-bold">Business Directory</h1>
+                <p class="lead">Support Congolese-owned businesses in Worcester and surrounding areas</p>
+            </div>
+        </div>
+        
+        <!-- Search and Filter Section -->
+        <div class="category-filter">
+            <h2 class="section-title">Find Businesses</h2>
+            
+            <!-- Search Box -->
+            <div class="search-box">
+                <input type="text" placeholder="Search for businesses...">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <!-- Category Filters -->
+            <div class="text-center">
+                <button class="category-btn active">All Businesses</button>
+                <button class="category-btn">Restaurants & Food</button>
+                <button class="category-btn">Retail & Shopping</button>
+                <button class="category-btn">Services</button>
+                <button class="category-btn">Health & Beauty</button>
+                <button class="category-btn">Professional Services</button>
+                <button class="category-btn">Automotive</button>
+                <button class="category-btn">Home Services</button>
+            </div>
+        </div>
+        
+        <!-- Featured Businesses -->
+        <div class="featured-section">
+            <h2 class="section-title">Featured Businesses</h2>
+            <div class="row">
+                <!-- Featured Business 1 -->
+                <div class="col-lg-6">
+                    <div class="business-card">
+                        <div class="position-relative">
+                            <div class="business-logo">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <span class="featured-badge">Featured</span>
+                        </div>
+                        <div class="business-info">
+                            <h4 class="business-name">Kinshasa Grill</h4>
+                            <span class="business-category">Restaurant</span>
+                            <p class="business-description">Authentic Congolese cuisine with a modern twist. Family-owned restaurant serving traditional dishes in a warm, welcoming atmosphere.</p>
+                            <div class="business-contact">
+                                <a href="#"><i class="fas fa-map-marker-alt me-1"></i> 123 Main St, Worcester, MA</a>
+                                <a href="tel:1234567890"><i class="fas fa-phone me-1"></i> (508) 123-4567</a>
+                                <a href="http://kinshasagrill.com" target="_blank"><i class="fas fa-globe me-1"></i> kinshasagrill.com</a>
+                                <div class="business-hours">
+                                    <i class="far fa-clock me-1"></i> Mon-Sat: 11am-9pm, Sun: 12pm-8pm
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Business 2 -->
+                <div class="col-lg-6">
+                    <div class="business-card">
+                        <div class="position-relative">
+                            <div class="business-logo">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <span class="featured-badge">Featured</span>
+                        </div>
+                        <div class="business-info">
+                            <h4 class="business-name">Congo Market</h4>
+                            <span class="business-category">Grocery Store</span>
+                            <p class="business-description">Your one-stop shop for authentic Congolese and African groceries, spices, and specialty products. Fresh produce and imported goods.</p>
+                            <div class="business-contact">
+                                <a href="#"><i class="fas fa-map-marker-alt me-1"></i> 456 Elm St, Worcester, MA</a>
+                                <a href="tel:1234567891"><i class="fas fa-phone me-1"></i> (508) 123-4568</a>
+                                <a href="#"><i class="fab fa-facebook me-1"></i> Congo Market Worcester</a>
+                                <div class="business-hours">
+                                    <i class="far fa-clock me-1"></i> Mon-Sun: 8am-9pm
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- All Businesses Section -->
+        <h2 class="section-title">All Businesses</h2>
+        
+        <div class="row g-4">
+            <!-- Business 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="business-card">
+                    <div class="business-logo">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="business-info">
+                        <h4 class="business-name">Lubumbashi Auto Repair</h4>
+                        <span class="business-category">Automotive</span>
+                        <p class="business-description">Full-service auto repair and maintenance. Specializing in European and Asian imports. Honest service with fair pricing.</p>
+                        <div class="business-contact">
+                            <a href="#"><i class="fas fa-map-marker-alt me-1"></i> 789 Oak Ave, Worcester, MA</a>
+                            <a href="tel:1234567892"><i class="fas fa-phone me-1"></i> (508) 123-4569</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Business 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="business-card">
+                    <div class="business-logo">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <div class="business-info">
+                        <h4 class="business-name">Brazzaville Beauty Salon</h4>
+                        <span class="business-category">Beauty & Hair</span>
+                        <p class="business-description">Specializing in African hair braiding, natural hair care, and modern styling techniques. Walk-ins welcome.</p>
+                        <div class="business-contact">
+                            <a href="#"><i class="fas fa-map-marker-alt me-1"></i> 321 Pine St, Worcester, MA</a>
+                            <a href="tel:1234567893"><i class="fas fa-phone me-1"></i> (508) 123-4570</a>
+                            <a href="#"><i class="fab fa-instagram me-1"></i> @brazzavillebeauty</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Business 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="business-card">
+                    <div class="business-logo">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="business-info">
+                        <h4 class="business-name">Kivu Tech Solutions</h4>
+                        <span class="business-category">IT Services</span>
+                        <p class="business-description">Computer repair, network setup, and IT consulting for small businesses and home users. Remote support available.</p>
+                        <div class="business-contact">
+                            <a href="#"><i class="fas fa-map-marker-alt me-1"></i> 654 Maple Rd, Worcester, MA</a>
+                            <a href="tel:1234567894"><i class="fas fa-phone me-1"></i> (508) 123-4571</a>
+                            <a href="mailto:info@kivutech.com"><i class="fas fa-envelope me-1"></i> info@kivutech.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Business 4 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="business-card">
+                    <div class="business-logo">
+                        <i class="fas fa-shirt"></i>
+                    </div>
+                    <div class="business-info">
+                        <h4 class="business-name">African Prints & Fabrics</h4>
+                        <span class="business-category">Retail</span>
+                        <p class="business-description">Beautiful selection of African prints, fabrics, and traditional clothing. Custom tailoring services available.</p>
+                        <div class="business-contact">
+                            <a href="#"><i class="fas fa-map-marker-alt me-1"></i> 987 Cedar Ln, Worcester, MA</a>
+                            <a href="tel:1234567895"><i class="fas fa-phone me-1"></i> (508) 123-4572</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Business 5 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="business-card">
+                    <div class="business-logo">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <div class="business-info">
+                        <h4 class="business-name">Mbuji-Mayi Construction</h4>
+                        <span class="business-category">Contracting</span>
+                        <p class="business-description">General contracting, remodeling, and home repair services. Licensed and insured. Free estimates.</p>
+                        <div class="business-contact">
+                            <a href="#"><i class="fas fa-map-marker-alt me-1"></i> 147 Birch St, Worcester, MA</a>
+                            <a href="tel:1234567896"><i class="fas fa-phone me-1"></i> (508) 123-4573</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Business 6 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="business-card">
+                    <div class="business-logo">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="business-info">
+                        <h4 class="business-name">Kinshasa Tax Services</h4>
+                        <span class="business-category">Financial Services</span>
+                        <p class="business-description">Tax preparation, accounting, and financial consulting for individuals and small businesses. Bilingual services available.</p>
+                        <div class="business-contact">
+                            <a href="#"><i class="fas fa-map-marker-alt me-1"></i> 258 Spruce Ave, Worcester, MA</a>
+                            <a href="tel:1234567897"><i class="fas fa-phone me-1"></i> (508) 123-4574</a>
+                            <a href="mailto:tax@kinshasatax.com"><i class="fas fa-envelope me-1"></i> tax@kinshasatax.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Promotion Section -->
+        <div class="promo-section">
+            <div class="container">
+                <h3>List Your Business With Us</h3>
+                <p>Are you a Congolese business owner in Worcester? Join our directory to increase your visibility, connect with customers, and support our community's economic growth.</p>
+                <a href="#" class="btn btn-lg" style="background-color: var(--secondary); color: var(--primary); margin-top: 20px;">Add Your Business</a>
+            </div>
+        </div>
+        
+        <!-- Business Resources -->
+        <div class="featured-section">
+            <h2 class="section-title">Business Resources</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <i class="fas fa-handshake fa-3x text-primary mb-3"></i>
+                        <h5>Networking Events</h5>
+                        <p>Connect with other business owners at our monthly networking events.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                        <h5>Business Workshops</h5>
+                        <p>Learn new skills with our free business development workshops.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                        <h5>Community Support</h5>
+                        <p>Tap into our community's support by listing with the CCWC directory.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.category-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // In a real implementation, you would filter the businesses here
+                    // For this example, we'll just log the category
+                    console.log('Filtering by: ' + this.textContent);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

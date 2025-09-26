@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Committee - CCWC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        :root {
+            --primary: #194a8d;
+            --secondary: #fecf6a;
+            --accent: #df1c44;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding-top: 20px;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d3a7a 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .executive-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .executive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .executive-photo {
+            height: 220px;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .executive-photo .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+        
+        .executive-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .executive-name {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .executive-position {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .executive-bio {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+        
+        .executive-responsibilities {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .executive-responsibilities h6 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .executive-responsibilities ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .executive-responsibilities li {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        .contact-info {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+        
+        .committee-structure {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+        
+        .structure-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .structure-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .structure-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .structure-text h5 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .structure-text p {
+            margin-bottom: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .mission-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d3a7a 100%);
+            color: white;
+            padding: 60px 0;
+            border-radius: 15px;
+            margin: 60px 0;
+            text-align: center;
+        }
+        
+        .mission-section h3 {
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .mission-section p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .back-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-bottom: 30px;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .back-button:hover {
+            background-color: #133a73;
+            color: white;
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 40px 0;
+                text-align: center;
+            }
+            
+            .committee-structure {
+                padding: 20px;
+            }
+            
+            .structure-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .structure-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .contact-info a {
+                margin-right: 10px;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="../index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="container">
+                <h1 class="display-4 fw-bold">Executive Committee</h1>
+                <p class="lead">Meet the dedicated team responsible for the day-to-day operations of CCWC</p>
+            </div>
+        </div>
+        
+        <!-- Committee Structure Section -->
+        <div class="committee-structure">
+            <h2 class="section-title">Our Operational Structure</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="structure-item">
+                        <div class="structure-icon">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <div class="structure-text">
+                            <h5>Executive Director</h5>
+                            <p>Oversees all organizational operations and implements strategic plans</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-item">
+                        <div class="structure-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="structure-text">
+                            <h5>Programs Manager</h5>
+                            <p>Develops and manages community programs and initiatives</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-item">
+                        <div class="structure-icon">
+                            <i class="fas fa-comments-dollar"></i>
+                        </div>
+                        <div class="structure-text">
+                            <h5>Finance Officer</h5>
+                            <p>Manages budgeting, financial reporting, and fiscal operations</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="structure-item">
+                        <div class="structure-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="structure-text">
+                            <h5>Communications Coordinator</h5>
+                            <p>Handles public relations, marketing, and community outreach</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-item">
+                        <div class="structure-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="structure-text">
+                            <h5>Membership Coordinator</h5>
+                            <p>Manages member services, recruitment, and engagement</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-item">
+                        <div class="structure-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="structure-text">
+                            <h5>Events Coordinator</h5>
+                            <p>Plans and executes community events and activities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Executive Committee Members Section -->
+        <h2 class="section-title">Meet Our Executive Team</h2>
+        
+        <div class="row g-4"> <!-- Added Bootstrap's g-4 class for consistent spacing -->
+            <!-- Executive Director -->
+            <div class="col-lg-6">
+                <div class="executive-card">
+                    <div class="executive-photo">
+                        <i class="fas fa-user-tie"></i>
+                        <div class="photo-overlay">
+                            <span class="role-badge">Leadership</span>
+                        </div>
+                    </div>
+                    <div class="executive-info">
+                        <h4 class="executive-name">Samuel Kabasele</h4>
+                        <div class="executive-position">Executive Director</div>
+                        <p class="executive-bio">Samuel brings over 10 years of nonprofit management experience to CCWC. With a Master's in Public Administration, he oversees the strategic direction and daily operations of our organization.</p>
+                        
+                        <div class="executive-responsibilities">
+                            <h6>Key Responsibilities:</h6>
+                            <ul>
+                                <li>Strategic planning and organizational leadership</li>
+                                <li>Staff management and development</li>
+                                <li>Financial oversight and fundraising</li>
+                                <li>Community partnerships and stakeholder relations</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <a href="mailto:s.kabasele@ccwc.org"><i class="fas fa-envelope me-1"></i> s.kabasele@ccwc.org</a>
+                            <a href="tel:+15081234567"><i class="fas fa-phone me-1"></i> (508) 123-4567</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Programs Manager -->
+            <div class="col-lg-6">
+                <div class="executive-card">
+                    <div class="executive-photo">
+                        <i class="fas fa-tasks"></i>
+                        <div class="photo-overlay">
+                            <span class="role-badge">Programs</span>
+                        </div>
+                    </div>
+                    <div class="executive-info">
+                        <h4 class="executive-name">Grace Ilunga</h4>
+                        <div class="executive-position">Programs Manager</div>
+                        <p class="executive-bio">Grace has a background in social work and community development. She is passionate about creating programs that address the specific needs of our community members.</p>
+                        
+                        <div class="executive-responsibilities">
+                            <h6>Key Responsibilities:</h6>
+                            <ul>
+                                <li>Program development and implementation</li>
+                                <li>Grant writing and program funding</li>
+                                <li>Volunteer coordination and management</li>
+                                <li>Program evaluation and impact assessment</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <a href="mailto:g.ilunga@ccwc.org"><i class="fas fa-envelope me-1"></i> g.ilunga@ccwc.org</a>
+                            <a href="tel:+15081234568"><i class="fas fa-phone me-1"></i> (508) 123-4568</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Finance Officer -->
+            <div class="col-lg-6">
+                <div class="executive-card">
+                    <div class="executive-photo">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="photo-overlay">
+                            <span class="role-badge">Finance</span>
+                        </div>
+                    </div>
+                    <div class="executive-info">
+                        <h4 class="executive-name">Paul Tshibangu</h4>
+                        <div class="executive-position">Finance Officer</div>
+                        <p class="executive-bio">Paul is a certified accountant with extensive experience in nonprofit financial management. He ensures our organization maintains fiscal responsibility and transparency.</p>
+                        
+                        <div class="executive-responsibilities">
+                            <h6>Key Responsibilities:</h6>
+                            <ul>
+                                <li>Budget development and management</li>
+                                <li>Financial reporting and compliance</li>
+                                <li>Payroll and accounts management</li>
+                                <li>Audit preparation and coordination</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <a href="mailto:p.tshibangu@ccwc.org"><i class="fas fa-envelope me-1"></i> p.tshibangu@ccwc.org</a>
+                            <a href="tel:+15081234569"><i class="fas fa-phone me-1"></i> (508) 123-4569</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Communications Coordinator -->
+            <div class="col-lg-6">
+                <div class="executive-card">
+                    <div class="executive-photo">
+                        <i class="fas fa-bullhorn"></i>
+                        <div class="photo-overlay">
+                            <span class="role-badge">Communications</span>
+                        </div>
+                    </div>
+                    <div class="executive-info">
+                        <h4 class="executive-name">Sarah Mbuyi</h4>
+                        <div class="executive-position">Communications Coordinator</div>
+                        <p class="executive-bio">Sarah is a marketing professional with a passion for storytelling. She ensures our community stays informed and engaged through effective communication strategies.</p>
+                        
+                        <div class="executive-responsibilities">
+                            <h6>Key Responsibilities:</h6>
+                            <ul>
+                                <li>Public relations and media outreach</li>
+                                <li>Newsletter and content creation</li>
+                                <li>Social media management</li>
+                                <li>Brand consistency and messaging</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <a href="mailto:s.mbuyi@ccwc.org"><i class="fas fa-envelope me-1"></i> s.mbuyi@ccwc.org</a>
+                            <a href="tel:+15081234570"><i class="fas fa-phone me-1"></i> (508) 123-4570</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Membership Coordinator -->
+            <div class="col-lg-6">
+                <div class="executive-card">
+                    <div class="executive-photo">
+                        <i class="fas fa-id-card"></i>
+                        <div class="photo-overlay">
+                            <span class="role-badge">Membership</span>
+                        </div>
+                    </div>
+                    <div class="executive-info">
+                        <h4 class="executive-name">David Mulumba</h4>
+                        <div class="executive-position">Membership Coordinator</div>
+                        <p class="executive-bio">David is passionate about building community connections. He works to ensure our members feel valued, supported, and engaged with CCWC's activities.</p>
+                        
+                        <div class="executive-responsibilities">
+                            <h6>Key Responsibilities:</h6>
+                            <ul>
+                                <li>Member recruitment and retention</li>
+                                <li>Member database management</li>
+                                <li>New member orientation</li>
+                                <li>Member benefits and services</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <a href="mailto:d.mulumba@ccwc.org"><i class="fas fa-envelope me-1"></i> d.mulumba@ccwc.org</a>
+                            <a href="tel:+15081234571"><i class="fas fa-phone me-1"></i> (508) 123-4571</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Events Coordinator -->
+            <div class="col-lg-6">
+                <div class="executive-card">
+                    <div class="executive-photo">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="photo-overlay">
+                            <span class="role-badge">Events</span>
+                        </div>
+                    </div>
+                    <div class="executive-info">
+                        <h4 class="executive-name">Esther Nzuzi</h4>
+                        <div class="executive-position">Events Coordinator</div>
+                        <p class="executive-bio">Esther has a talent for creating memorable community experiences. She organizes events that celebrate our culture and bring our community together.</p>
+                        
+                        <div class="executive-responsibilities">
+                            <h6>Key Responsibilities:</h6>
+                            <ul>
+                                <li>Event planning and coordination</li>
+                                <li>Venue selection and logistics</li>
+                                <li>Vendor management</li>
+                                <li>Event promotion and attendance tracking</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <a href="mailto:e.nzuzi@ccwc.org"><i class="fas fa-envelope me-1"></i> e.nzuzi@ccwc.org</a>
+                            <a href="tel:+15081234572"><i class="fas fa-phone me-1"></i> (508) 123-4572</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mission Section -->
+        <div class="mission-section">
+            <div class="container">
+                <h3>Our Operational Mission</h3>
+                <p>The Executive Committee is dedicated to implementing the strategic vision set by the Board of Directors. We work tirelessly to ensure the smooth operation of CCWC, delivering programs and services that enrich the lives of our community members while preserving and promoting Congolese culture in Worcester.</p>
+            </div>
+        </div>
+        
+        <!-- Contact Information -->
+        <div class="committee-structure">
+            <h2 class="section-title">Contact the Executive Committee</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>For operational inquiries or to contact the Executive Committee:</p>
+                    <p><i class="fas fa-envelope me-2 text-primary"></i> <strong>General Email:</strong> info@ccwc.org</p>
+                    <p><i class="fas fa-phone me-2 text-primary"></i> <strong>Office Phone:</strong> (508) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt me-2 text-primary"></i> <strong>Office Address:</strong> 123 Community Street, Worcester, MA 01608</p>
+                </div>
+                <div class="col-md-6">
+                    <p>Office hours: Monday-Friday, 9:00 AM - 5:00 PM</p>
+                    <p>We welcome your questions, feedback, and suggestions for improving our services and programs.</p>
+                    <p>For specific department inquiries, please contact the relevant staff member directly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
